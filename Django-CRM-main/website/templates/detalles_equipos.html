@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="card"  style="position:relative; background-color: black; color: aliceblue;"> 
+    <div class="card-header" style="background-color: #143890; font-size: 25px;" ><strong>
+    	{{ deequip.equipo }} 
+		</strong>
+  </div>
+  <div class="card-body" style="font-size: larger;">
+
+    
+<p class="card-text">
+<strong>Marca: </strong>{{ deequip.marca }}</p>
+
+<p class="card-text">
+<strong>Modelo: </strong>{{ deequip.modelo }}
+</p>
+
+<p class="card-text">
+<strong>Numero de Serie: </strong>{{ deequip.nserie }}</p>
+
+<p class="card-text">
+<strong>Lectura: </strong>{{ deequip.lectura }}</p>
+
+<p class="card-text">
+<strong>Descripcion: </strong>{{ deequip.descripcion }}</p>
+
+<p class="card-text">
+<strong>ID: </strong>{{ deequip.id }}</p>
+
+    
+  </div>
+</div>
+
+<br/><br/>
+<a href="{% url 'equiposvista' %}" class="btn btn-secondary">Regresar</a>
+
+
+<a href="{% url 'delete_equipos' deequip.id %}" class="btn btn-danger">Eliminar</a>
+
+<a href="{% url 'update_equipos' deequip.id %}" class="btn btn-secondary">Actualizar registro</a>
+
+
+
+<br/><br/>
+
+
+{% endblock %}

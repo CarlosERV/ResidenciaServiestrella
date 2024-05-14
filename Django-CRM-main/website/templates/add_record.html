@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-8 offset-3">
+<h1>Agregar Nota</h1>
+<br/>
+<form method="POST"  class="form-control-lg"  action="{% url 'add_record' %}">
+	{% csrf_token %}
+  
+  <!-- <div class="row mb-3"> 
+    <label for="id_first_name" class="col-sm-2 col-form-label">Nombre:</label>
+    <div class="col-sm-10">
+      <input type="text" name="first_name" placeholder="Nombre" class="form-control" required="" id="id_first_name">
+    </div>
+  </div> -->
+	{{ form.as_p }}
+<!-- 
+  <label class="text-danger" for="{{ field.auto_id }}">{{ field.label }}</label> -->
+<!--   
+  <p class="card-text"><strong>Correo: </strong>{{ form.as_p.first_name }}</p> -->
+  
+<br/>
+  <button type="submit" class="btn btn-secondary" style="font-size: larger;">Agregar</button>
+  <a href="{% url 'home' %}" class="btn btn-secondary" style="font-size: larger;">Regresar</a>
+  <button type="button" id="btnsaludar" class="btn btn-secondary" style="font-size: larger;">Calcular</button>
+  <p></p>
+  <p></p>
+  <p></p> 
+  
+  
+  <script>
+    document.getElementById('btnsaludar').addEventListener('click', function(){
+      suma();
+    });
+  
+    function suma(){
+      var pu=document.getElementById("id_PUnitario").value;
+      var im=document.getElementById("id_Importe").value;
+      if(pu<=0 || pu==NaN || pu==" "){
+       pu=0;
+       var z = parseFloat(im);
+       var s=z+pu;
+       var i=(s*8)/100;
+       var t=s+i;
+       document.getElementById("id_SubTotal").value = s;
+       document.getElementById("id_Iva").value = i;
+       document.getElementById("id_Total").value = t;
+      }else if(im<=0 || im==NaN || im==" "){
+       im=0;
+       var x = parseFloat(pu);
+       var s=x+im;
+       var i=(s*8)/100;
+       var t=s+i;
+       document.getElementById("id_SubTotal").value = s;
+       document.getElementById("id_Iva").value = i;
+       document.getElementById("id_Total").value = t;
+      }else{
+       var x = parseFloat(pu);
+       var z = parseFloat(im);
+       var s=x+z;
+       var i=(s*8)/100;
+       var t=s+i;
+       document.getElementById("id_SubTotal").value = s;
+       document.getElementById("id_Iva").value = i;
+       document.getElementById("id_Total").value = t;
+      }
+    }
+
+  </script>
+</form>
+
+</div>
+
+{% endblock %}

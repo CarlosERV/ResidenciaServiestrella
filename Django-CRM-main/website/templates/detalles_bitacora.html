@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="card"  style="position:relative; background-color: black; color: aliceblue;"> 
+    <div class="card-header" style="background-color: #143890; font-size: 25px;" ><strong>
+    	{{ debita.nombre }} 
+		</strong>
+  </div>
+  <div class="card-body" style="font-size: larger;">
+
+    
+<p class="card-text">
+<strong>RFC: </strong>{{ debita.rfc }}</p>
+
+<p class="card-text">
+<strong>Razon Social: </strong>{{ debita.razonS }}
+</p>
+
+<p class="card-text">
+<strong>Direccion: </strong>{{ debita.direccion }}</p>
+
+<p class="card-text">
+<strong>Ciudad: </strong>{{ debita.cuidad }}</p>
+
+<p class="card-text">
+<strong>CP: </strong>{{ debita.cp }}</p>
+
+<p class="card-text">
+<strong>Correo: </strong>{{ debita.correo }}</p>
+
+<p class="card-text">
+<strong>Marca: </strong>{{ debita.marca }}</p>
+
+<p class="card-text">
+<strong>Modelo: </strong>{{ debita.modelo }}</p>
+
+<p class="card-text">
+<strong>Numero de Serie: </strong>{{ debita.nserie }}</p>
+
+<p class="card-text">
+<strong>Funciones: </strong>{{ debita.funciones }}</p>
+
+<p class="card-text">
+<strong>Servicio: </strong>{{ debita.servicio }}</p>
+
+<p class="card-text">
+<strong>Costo: </strong>{{ debita.costo }}</p>
+
+<p class="card-text">
+<strong>Moneda: </strong>{{ debita.moneda }}</p>
+
+<p class="card-text">
+<strong>Procesos: </strong>{{ debita.procesos }}</p>
+
+<p class="card-text">
+<strong>Excedente: </strong>{{ debita.excedente }}</p>
+
+<p class="card-text">
+<strong>Observaciones: </strong>{{ debita.observaciones }}</p>
+
+<p class="card-text">
+<strong>ID: </strong>{{ debita.id }}</p>
+
+    
+  </div>
+</div>
+
+<br/><br/>
+<a href="{% url 'bitacoravista' %}" class="btn btn-secondary">Regresar</a>
+
+
+<a href="{% url 'delete_bitacora' debita.id %}" class="btn btn-danger">Eliminar</a>
+
+<a href="{% url 'update_bitacora' debita.id %}" class="btn btn-secondary">Actualizar registro</a>
+
+
+
+<br/><br/>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+
+  .input-group{
+    position: relative;
+  }
+  .input{
+    padding: 1%;
+    width: 50%;
+    max-width: 300px;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #04AA6D;
+  }
+  label{
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    font-size: 14px;
+    padding: 0px 5px;
+    color: #666;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+  .input:focus + label{
+    top: -10px;
+    color: #04AA6D;
+    background-color: #fff;
+  }
+  .col-md-9 input.col-sm-10 {
+      font-size: 19px; /* Ajusta el radio de borde según tu preferencia */
+  }

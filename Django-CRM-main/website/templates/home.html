@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+<style>
+  #formGroupExampleInput {
+  background-color:red;
+  width: 1px;
+  color:white;
+}
+
+#formGroupExampleInput::placeholder {
+ color:white;
+ font-size: larger
+}
+</style>
+
+<form action="" method="get">  
+  <div class="input-group" style="width: 1000px;">
+    <input type="text" class="form-control bg-dark bordered" id="formGroupExampleInput" placeholder="Buscar..." style="color: aliceblue; font-size: larger;">
+    <input type="submit" name="enviar" value="buscar"> 
+    <span lang="es">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><h1>Servicios</h1>
+   </div>
+   <br>
+</form>
+
+<style>
+  #table-dark{
+    font-size: large;
+    margin-top: 20px;
+    list-style: none;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+  }
+  .filtro{
+    display: none;
+  }
+</style>
+
+<table class="table table-dark table-hover table-bordered" style="background-color: black; color: aliceblue;">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col" style="background-color: #143890;">Nombre</th>
+      <th scope="col" style="background-color: #143890;">contacto</th>
+      <th scope="col" style="background-color: #143890;">correo</th>
+      <th scope="col" style="background-color: #143890;">Telefono</th>
+      <th scope="col" style="background-color: #143890;">Direccion</th>
+      <th scope="col" style="background-color: #143890;">Cuidad</th>
+      <th scope="col" style="background-color: #143890;">RFC</th>
+      <th scope="col" style="background-color: #143890;">Equipo</th>
+      <th scope="col" style="background-color: #143890;">Marca</th>
+      <th scope="col" style="background-color: #143890;">Modelo</th>
+      <th scope="col" style="background-color: #143890;">NoSerie</th>
+      <th scope="col" style="background-color: #143890;">Lectura</th>
+      <th scope="col" style="background-color: #143890;">Observaciones</th>
+      <th scope="col" style="background-color: #143890;">Descripcion</th>
+      <th scope="col" style="background-color: #143890;">P.Unitario</th>
+      <th scope="col" style="background-color: #143890;">Importe</th>
+      <th scope="col" style="background-color: #143890;">SubTotal</th>
+      <th scope="col" style="background-color: #143890;">Iva</th>
+      <th scope="col" style="background-color: #143890;">Total</th>
+      <th scope="col" style="background-color: #143890;">Registrado</th>
+      <th scope="col" style="background-color: #143890;">Servicio</th>
+      <th scope="col" style="background-color: #143890;">ID</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    
+{% if records %}
+	{% for record in records %}
+		<tr>
+			<td>{{ record.first_name }}</td>
+      <td>{{ record.last_name }}</td>
+			<td>{{ record.email }}</td>
+			<td>{{ record.phone }}</td>
+			<td>{{ record.address }}</td>
+			<td>{{ record.city }}</td>
+			<td>{{ record.RFC }}</td>
+      <td>{{ record.Equipo }}</td>  
+      <td>{{ record.Marca }}</td>
+      <td>{{ record.Modelo }}</td>
+      <td>{{ record.NoSerie }}</td>
+      <td>{{ record.Lectura }}</td>
+      <td>{{ record.Observaciones }}</td>
+      <td>{{ record.Descripcion }}</td>
+      <td>{{ record.PUnitario }}</td>
+      <td>{{ record.Importe }}</td>
+      <td>{{ record.SubTotal }}</td>
+      <td>{{ record.Iva }}</td>
+      <td>{{ record.Total }}</td>
+			<td>{{ record.created_at }}</td>
+      <td>{{ record.servicio }}</td>
+			<td><a href="{% url 'record' record.id %}">{{ record.id }}</a></td>
+		</tr>
+	{% endfor %}
+
+{% endif %}
+
+	
+	  </tbody>
+	</table>
+
+
+
+
+
+{% else %}
+
+<div class="col-md-6 offset-md-3">
+<h1>Login</h1>
+<br/>
+
+<form method="POST" action="{% url 'home' %}">
+	{% csrf_token %}
+
+  <div class="mb-3">
+    <input type="text" class="form-control" name="username", placeholder="Username" required>
+    
+  </div><br/>
+  <div class="mb-3">
+    <input type="password" class="form-control" name="password", placeholder="Password" required>
+  </div>
+  <br/>
+  <button type="submit" class="btn btn-secondary">Login</button>
+
+</form>
+
+
+
+{% endif %}
+
+{% endblock %}

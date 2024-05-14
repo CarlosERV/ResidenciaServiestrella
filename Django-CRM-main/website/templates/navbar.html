@@ -1,0 +1,113 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 2170px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="color: greenyellow; font-size: xx-large; font-weight:bold;" href="{% url 'home' %}">Serviestrella SC</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <img src="logo.png" width="300" height="300">
+      <span class="navbar-toggler-icon"></span>
+    </button><span lang="es">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="es">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        {% if user.is_authenticated %}
+
+        <style type="text/css">
+          * {
+            padding: 0px;
+            margin: 0px;
+          }
+          body {
+            color: black;
+          }
+
+          #navbarSupportedContent {
+            clear: both;
+            margin: auto;
+            width: 500px;
+            margin-top: 20px;
+            margin-bottom: 110px;
+            font-family: Arial, Helvetica, sans-serif;
+          }
+          ul, ol {
+            list-style: none;
+          }
+          .navbar-nav li a {
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+          } 
+          .navbar-nav li a:hover{
+            background-color: #434E2A;
+          }
+          .navbar-nav > li {
+            float:left;
+          }
+          .navbar-nav li ul {
+            display: none;
+            position: absolute;
+            min-width: 150px;
+            padding: 8px;
+          }
+
+          .navbar-nav li:hover > ul {
+            display: block;
+            
+          }
+
+        </style>
+        <li class="nav-item">  
+          <a class="nav-link" style="color: aqua; font-size: larger;" href="{% url 'add_record' %}">Agregar Nota</a>
+          <ul style="text-align: center;">
+        
+            <li><a style="color: aqua;" href="{% url 'add_bita' %}">Bitacora</a></li>
+            <li><a style="color: aqua;" href="{% url 'add_cliente' %}">Cliente</a></li>
+            <li><a style="color: aqua;" href="{% url 'add_equipos' %}">Equipo</a></li>
+          </ul>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" style="color:aqua; font-size: larger;" href="{% url 'bitacoravista' %}">Bitacora</a>
+          <ul>
+            
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" style="color:aqua; font-size: larger;" href="{% url 'clientesvista' %}">Clientes</a>
+          <ul>
+            
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:aqua; font-size: larger;" href="{% url 'equiposvista' %}">Equipos</a>
+          <ul>
+            
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" style="color:aqua; font-size: larger;" href="{% url 'usuariosvista' %}">Usuarios</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" style="color:red; font-size: larger;" href="{% url 'logout' %}">Cerrar Sesion</a>
+        </li>
+        
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Registrar nuevo usuario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Login</a>
+        </li>        
+        <p></p>
+        {% endif %}
+        
+        
+      </ul>
+      
+    </div>
+  </div>
+</nav>

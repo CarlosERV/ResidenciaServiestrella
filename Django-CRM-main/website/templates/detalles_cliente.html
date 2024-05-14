@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+  <div class="card"  style="position:relative; background-color: black; color: aliceblue;"> 
+    <div class="card-header" style="background-color: #143890; font-size: 25px;" ><strong>
+    	{{ declien.nombre }} 
+		</strong>
+  </div>
+  <div class="card-body" style="font-size: larger;">
+
+    
+<p class="card-text">
+<strong>Contacto: </strong>{{ declien.contacto }}</p>
+
+<p class="card-text">
+<strong>Correo: </strong>{{ declien.correo }}
+</p>
+
+<p class="card-text">
+<strong>Telefono: </strong>{{ declien.telefono }}</p>
+
+<p class="card-text">
+<strong>Direccion: </strong>{{ declien.direccion }}</p>
+
+<p class="card-text">
+<strong>Ciudad: </strong>{{ declien.cuidad }}</p>
+
+<p class="card-text">
+<strong>RFC: </strong>{{ declien.rfc }}</p>
+
+<p class="card-text">
+<strong>ID: </strong>{{ declien.id }}</p>
+
+    
+  </div>
+</div>
+
+<br/><br/>
+<a href="{% url 'clientesvista' %}" class="btn btn-secondary">Regresar</a>
+
+
+<a href="{% url 'delete_clientes' declien.id %}" class="btn btn-danger">Eliminar</a>
+
+<a href="{% url 'update_clientes' declien.id %}" class="btn btn-secondary">Actualizar registro</a>
+
+<a href="{% url 'add_record' %}" class="btn btn-secondary">Agregar nota</a>
+<br><br><br>
+<button id="btnsaludar" class="btn btn-secondary" >Hola</button>
+
+<script>
+  document.getElementById('btnsaludar').addEventListener('click', function(){
+    saludar();
+  });
+
+  function saludar(){
+    alert("Hola");
+  }
+</script>
+</body>
+
+{% endblock %}
