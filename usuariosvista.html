@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+<style>
+  #formGroupExampleInput {
+  background-color:red;
+  width:300px;
+  color:white;
+}
+
+#formGroupExampleInput::placeholder {
+ color:white;
+ font-size: larger
+}
+</style>
+
+<form action="" method="get">  
+  <div class="input-group">
+    <input type="text" class="form-control bg-dark bordered" id="formGroupExampleInput" placeholder="Buscar Usuarios..." style="color: aliceblue; font-size: larger;" name="busqueda">
+   </div>
+   <br>
+</form>
+
+
+<script>
+  $(document).ready(function(){
+    $("#buscador").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#tablita tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  </script>
+
+<style>
+  #table-dark{
+    font-size: large;
+    margin-top: 20px;
+    list-style: none;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+  }
+  .filtro{
+    display: none;
+  }
+</style>
+
+<table class="table table-dark table-hover table-bordered" style="background-color: black; color: aliceblue;">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col" style="background-color: #143890;">Nombre</th>
+      <th scope="col" style="background-color: #143890;">Apellido</th>
+      <th scope="col" style="background-color: #143890;">Username</th>
+      <th scope="col" style="background-color: #143890;">Correo</th>
+      <th scope="col" style="background-color: #143890;">Fecha de registro</th>
+      <th scope="col" style="background-color: #143890;">Ultimo acceso</th>
+      <th scope="col" style="background-color: #143890;">ID</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    
+{% if usu %}
+	{% for us in usu %}
+		<tr>
+          <td>{{ us.first_name }}</td>  
+          <td>{{ us.last_name }}</td>
+          <td>{{ us.username }}</td>
+          <td>{{ us.email }}</td>
+          <td>{{ us.date_joined }}</td>
+          <td>{{ us.last_login }}</td>
+		  <td>{{ us.id }}</td>
+		</tr>
+	{% endfor %}
+
+{% endif %}
+
+<script> 
+  document.addEventListener('DOMContentLoaded', function() {
+  var inputBuscar = document.getElementById('formGroupExampleInput');
+  inputBuscar.addEventListener('input', function() {
+  var textoBusqueda = inputBuscar.value.toLowerCase(); 
+  var tabla = document.querySelector('.table');
+    for (var i = 1; i < tabla.rows.length; i++) {
+        var fila = tabla.rows[i];
+        var coincide = false;
+        for (var j = 0; j < fila.cells.length - 1; j++) {
+            var celda = fila.cells[j];
+            var valorCelda = celda.textContent.toLowerCase();
+            if (valorCelda.includes(textoBusqueda)) {
+                coincide = true;
+                celda.innerHTML = valorCelda.replace(new RegExp(textoBusqueda, 'gi'), '<span style="background-color: #758E3A;">$&</span>');
+            } else {
+                celda.innerHTML = valorCelda;
+            }
+        }
+        if (coincide) {
+            fila.style.display = '';
+        } else {
+            fila.style.display = 'none';
+        }
+    }
+  });
+});
+</script>
+	  </tbody>
+	</table>
+
+
+
+
+
+{% else %}
+
+<div class="col-md-6 offset-md-3">
+<h1>Login</h1>
+<br/>
+
+<form method="POST" action="{% url 'home' %}">
+	{% csrf_token %}
+
+  <div class="mb-3">
+    <input type="text" class="form-control" name="username", placeholder="Username" required>
+    
+  </div><br/>
+  <div class="mb-3">
+    <input type="password" class="form-control" name="password", placeholder="Password" required>
+  </div>
+  <br/>
+  <button type="submit" class="btn btn-secondary">Login</button>
+
+</form>
+
+
+
+{% endif %}
+
+{% endblock %}
